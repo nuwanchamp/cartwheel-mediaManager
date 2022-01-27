@@ -1,0 +1,27 @@
+{
+    "name": "sentech/media-manager",
+    "description": "Wordpress flavoured",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Sentech\\MediaManager\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Nuwan",
+            "email": "nuwanchamp02@gmail.com"
+        }
+    ],
+    "require": {
+        "spatie/laravel-medialibrary":"^9.0.0"
+    },
+    "extra": {
+        "laravel":{
+            "providers": [
+                "Sentech\\MediaManager\\MediaManagerServiceProvider"
+            ],
+            "aliases": {}
+        }
+    }
+}
