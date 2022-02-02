@@ -1,0 +1,32 @@
+{
+    "name": "media-manager",
+    "version": "1.0.0",
+    "scripts": {
+        "dev": "npm run development",
+        "development": "mix",
+        "watch-ex": "mix watch",
+        "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress  --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "watch-poll": "mix watch -- --watch-options-poll=1000",
+        "hot": "mix watch --hot",
+        "prod": "npm run production",
+        "production": "mix --production"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "jquery": "^3.6.0",
+        "laravel-mix": "^6.0.39",
+        "resolve-url-loader": "^5.0.0",
+        "sass": "^1.49.4",
+        "sass-loader": "^12.4.0",
+        "vue": "^2.6.14",
+        "vue-template-compiler": "^2.6.14"
+    },
+    "dependencies": {
+        "axios": "^0.25.0",
+        "cross-env": "^7.0.3",
+        "dropzone": "^6.0.0-beta.2",
+        "vee-validate": "^2.2.15",
+        "vue-loader": "^15.9.8"
+    }
+}

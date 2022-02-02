@@ -1,0 +1,1 @@
+<link rel="stylesheet" href="{{ asset('media-manager/css/menu.css') }}">

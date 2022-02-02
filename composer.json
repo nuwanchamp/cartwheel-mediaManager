@@ -7,6 +7,11 @@
             "Sentech\\MediaManager\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Sentech\\MediaManager\\Tests\\" : "tests/"
+        }
+    },
     "authors": [
         {
             "name": "Nuwan",
@@ -14,7 +19,12 @@
         }
     ],
     "require": {
-        "spatie/laravel-medialibrary":"^9.0.0"
+        "spatie/laravel-medialibrary":"^9.0.0",
+        "orchestra/testbench": "^6.24",
+        "illuminate/filesystem": "^8.81"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.5.7"
     },
     "extra": {
         "laravel":{
