@@ -4,6 +4,7 @@ namespace Sentech\MediaManager;
 
 
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 use Sentech\MediaManager\Manger\MediaManager;
 use Spatie\MediaLibrary\Conversions\Commands\RegenerateCommand;
@@ -14,6 +15,7 @@ use Spatie\MediaLibrary\MediaCollections\MediaRepository;
 use Spatie\MediaLibrary\MediaCollections\Models\Observers\MediaObserver;
 use Spatie\MediaLibrary\ResponsiveImages\TinyPlaceholderGenerator\TinyPlaceholderGenerator;
 use Spatie\MediaLibrary\ResponsiveImages\WidthCalculator\WidthCalculator;
+use Symfony\Component\Process\Process;
 
 class MediaManagerServiceProvider extends ServiceProvider
 {
@@ -37,7 +39,6 @@ class MediaManagerServiceProvider extends ServiceProvider
         $this->app->bind('test',function() {
             return new MediaManager;
         });
-
         $this->registerCommands();
 
     }
@@ -85,7 +86,18 @@ class MediaManagerServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/Resources/views', 'media');
         $this->loadViewsFrom($this->getSpatiePath().'/resources/views', 'media-library'); // necessary for testing
     }
-
+    public function publishAssets(){
+        $src = __DIR__.'/Resources/assets/dist';
+        $dest = public_path().'/media-manager';
+        $process = new Process(['rsync',  '-azPHv', $src, $dest]);
+        $process->start();
+        while($process->isRunning()){
+            $process->checkTimeout();
+        }
+        if(!$process->isSuccessful()){
+            echo $process->getOutput();
+        }
+    }
     public function getSpatiePath(){
         return dirname(__DIR__).'/vendor/spatie/laravel-medialibrary';
     }
